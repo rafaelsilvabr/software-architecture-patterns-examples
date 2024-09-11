@@ -1,39 +1,12 @@
 # Exemplos Camadas/Layers
 
-Para implementar exemplos de uma aplicação de abertura de conta bancária usando SQLite para persistência, vamos criar duas abordagens: uma usando camadas por entidade e outra usando metaparámetro. Isso permitirá armazenar e manipular dados de Account, Customer, e Transaction.
+Para implementar exemplos de uma aplicação de abertura de conta bancária usando SQLite para persistência, vamos criar duas abordagens: uma usando camadas por entidade e outra usando metaparâmetro. Isso permitirá armazenar e manipular dados de Account, Customer, e Transaction.
 
 ## Exemplo 1: Camadas por Entidade
 
 Neste exemplo, cada entidade tem suas próprias camadas de dados e de negócio. Usaremos SQLite para persistência.
 
 ```python
-import sqlite3
-
-# Configuração inicial do banco de dados SQLite
-def setup_database():
-    conn = sqlite3.connect('bank.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Account (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            account_number TEXT NOT NULL
-        )
-    ''')
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Customer (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL
-        )
-    ''')
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Transaction (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            description TEXT NOT NULL
-        )
-    ''')
-    conn.commit()
-    conn.close()
-
 # Camada de Dados para a entidade Account
 class AccountDataLayer:
     def save_account(self, account_number):
@@ -102,38 +75,11 @@ transaction_business = TransactionBusinessLayer()
 transaction_business.create_transaction("Deposit $100")
 ```
 
-## Exemplo 2: Camadas por Metaparámetro
+## Exemplo 2: Camadas por Metaparâmetro
 
-Neste exemplo, usamos um metaparámetro para definir qual entidade está sendo manipulada, tornando o código mais genérico.
+Neste exemplo, usamos um metaparâmetro para definir qual entidade está sendo manipulada, tornando o código mais genérico.
 
 ```python
-import sqlite3
-
-# Configuração inicial do banco de dados SQLite
-def setup_database():
-    conn = sqlite3.connect('bank.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Account (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            account_number TEXT NOT NULL
-        )
-    ''')
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Customer (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL
-        )
-    ''')
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Transaction (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            description TEXT NOT NULL
-        )
-    ''')
-    conn.commit()
-    conn.close()
-
 # Camada de Dados Genérica
 class DataLayer:
     def save(self, entity_type, data):
