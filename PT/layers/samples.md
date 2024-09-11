@@ -1,6 +1,6 @@
 # Exemplos Camadas/Layers
 
-Para implementar exemplos de uma aplicação de abertura de conta bancária usando SQLite para persistência, vamos criar duas abordagens: uma usando camadas por entidade e outra usando metaparámetro. Isso permitirá armazenar e manipular dados de Account, Customer, e Transaction.
+Para implementar exemplos de uma aplicação de abertura de conta bancária usando SQLite para persistência, vamos criar duas abordagens: uma usando camadas por entidade e outra usando metaparâmetro. Isso permitirá armazenar e manipular dados de Account, Customer, e Transaction.
 
 ## Exemplo 1: Camadas por Entidade
 
@@ -104,7 +104,7 @@ transaction_business.create_transaction("Deposit $100")
 
 ## Exemplo 2: Camadas por Metaparâmetro
 
-Neste exemplo, usamos um metaparámetro para definir qual entidade está sendo manipulada, tornando o código mais genérico.
+Neste exemplo, usamos um metaparâmetro para definir qual entidade está sendo manipulada, tornando o código mais genérico.
 
 ```python
 import sqlite3
