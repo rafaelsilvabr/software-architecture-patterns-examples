@@ -102,7 +102,7 @@ transaction_business = TransactionBusinessLayer()
 transaction_business.create_transaction("Deposit $100")
 ```
 
-## Exemplo 2: Camadas por Metaparámetro
+## Exemplo 2: Camadas por Metaparâmetro
 
 Neste exemplo, usamos um metaparámetro para definir qual entidade está sendo manipulada, tornando o código mais genérico.
 
